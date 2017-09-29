@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+     <% @tasks.each_slice(4) do |row| %>
+     <% row.each do |task| %>
+        <div class="col">
+          <div class="card">
+            <%= image_tag task.photo, class: 'card-img-top', size: "200x150" %>
+            <div class="body">
+              <h5> <%= task.name %> </h5>
+              <% if user_signed_in?%>
+                  <% if user_task?(current_user,task) %>
+                      <%= link_to "Realizar", task_lists_path(task), class: 'btn btn-success', method: :post%>
+                      <%# link_to "Detalle", lists_path, class: 'btn btn-success'%>
+                      <%= link_to "Detalle", task_path(task), class: 'btn btn-success'%>
+  								<% else %>
+  									<div class="well">
+                      <%= link_to 'Cancelar', list_desmarcar_path(tasks_id: task.id), method: :desmarcar, class: "btn btn-primary" %>
+                      <%# link_to "Detalle", lists_path, class: 'btn btn-success'%>
+                      <%= link_to "Detalle", task_path(task), class: 'btn btn-success'%>
+  									</div>
+  								<% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+     <% end %>
+      <div class="w-100" style="margin-top:20px"> </div>
+     <% end %>
+  </div>
+</div>

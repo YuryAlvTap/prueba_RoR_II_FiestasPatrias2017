@@ -1,0 +1,9 @@
+<table class="table">
+  <% @lists.each do |list| %>
+   <tr>
+     <td> <%= list.task.name %></td>
+     <td> <%= list.task.photo %></td>
+     <td> <%= list.user.email %></td>
+   </tr>
+  <% end %>
+</table>
